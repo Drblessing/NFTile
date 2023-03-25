@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
-export const Header = () => {
+export const AppHeader = () => {
   return (
     <Flex
       as='header'
