@@ -1,4 +1,4 @@
-import { Box, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Image, Text, VStack, Link } from '@chakra-ui/react';
 
 export const NFTCard = ({ image, title, description }) => (
   <Box margin={3}>
@@ -9,14 +9,13 @@ export const NFTCard = ({ image, title, description }) => (
       overflow='hidden'
       boxShadow='lg'
     >
-      <Image src={image} alt={title} objectFit='cover' boxSize={'200'} />
+      <Link href='https://www.oklink.com/okc-test/tokenAddr/0xbb01cc89fe8d659dea1454611127ee6f830ffa09'>
+        <Image src={image} alt={title} objectFit='cover' boxSize={'200'} />
+      </Link>
       <VStack p='6' spacing={3} align='start'>
         <Text fontWeight='bold' fontSize='xl'>
           {title}
         </Text>
-        {/* <Text fontSize='md' color='gray.600'>
-          {description}
-        </Text> */}
       </VStack>
     </Box>
   </Box>

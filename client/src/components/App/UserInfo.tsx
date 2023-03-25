@@ -14,14 +14,27 @@ import {
 
 import { useState } from 'react';
 
-import { useAccount } from 'wagmi';
+import { useAccount, useContractRead } from 'wagmi';
 
 import { NFTCard } from './NFTCard';
+
+import { erc721ABI } from 'wagmi';
+import { BigNumber } from 'ethers';
 
 export const UserInfo = () => {
   const { address, isConnected } = useAccount();
   const [tokenAddress, setTokenAddress] = useState('');
-  const [tokenID, setTokenID] = useState('')
+  const [tokenID, setTokenID] = useState('');
+
+  const { data, isError, isLoading, isSuccess, status } = useContractRead({
+    address: '0xbB01Cc89FE8d659DEa1454611127eE6f830FFA09',
+    abi: erc721ABI,
+    functionName: 'ownerOf',
+    args: [BigNumber.from('0')],
+    onError(error) {
+      // Do nothing
+    },
+  });
 
   const handleTokenAddressChange = (e: any) => {
     setTokenAddress(e.target.value);
@@ -38,14 +51,19 @@ export const UserInfo = () => {
     <>
       <Card align='center'>
         <CardHeader>
-          <Heading size='md'>🖼️ User NFTs: {address}</Heading>
+          <Heading size='md'>🖼️ User NFTs</Heading>
         </CardHeader>
         <CardBody>
           {isConnected ? (
             <Flex>
               <NFTCard image={punkLink} title='Punk #123' description='Punk' />
-              <NFTCard image={punkLink} title='Punk #524' description='Punk' />
-              <NFTCard image={punkLink} title='Punk #2352' description='Punk' />
+              {address === data ? (
+                <NFTCard
+                  image='okxnftSample.png'
+                  title='Mock OKC NFT #1'
+                  description='NFTILE'
+                />
+              ) : null}
             </Flex>
           ) : (
             <Text fontSize='2xl' fontWeight={'bold'} color='red.500'>
