@@ -21,7 +21,7 @@ import { NFTCard } from './NFTCard';
 export const UserInfo = () => {
   const { address, isConnected } = useAccount();
   const [tokenAddress, setTokenAddress] = useState('');
-  const [tokenID, setTokenID] = useState('');
+  const [tokenID, setTokenID] = useState('')
 
   const handleTokenAddressChange = (e: any) => {
     setTokenAddress(e.target.value);
@@ -38,7 +38,7 @@ export const UserInfo = () => {
     <>
       <Card align='center'>
         <CardHeader>
-          <Heading size='md'>🖼️ User NFTs</Heading>
+          <Heading size='md'>🖼️ User NFTs: {address}</Heading>
         </CardHeader>
         <CardBody>
           {isConnected ? (

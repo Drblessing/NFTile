@@ -15,7 +15,7 @@ import { DaoProvider } from '../context/DAOContext';
 
 export const okcTestnet = {
   id: 65,
-  name: 'OKExChain Testnet',
+  name: 'OKX Chain Testnet',
   network: 'okcTestnet',
   nativeCurrency: {
     decimals: 18,
