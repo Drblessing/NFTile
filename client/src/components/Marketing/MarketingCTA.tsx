@@ -11,6 +11,8 @@ import {
   createIcon,
 } from '@chakra-ui/react';
 
+import { MarketingHero } from './MarketingHero';
+
 export function MarketingCTA() {
   return (
     <>
@@ -20,6 +22,8 @@ export function MarketingCTA() {
           rel='stylesheet'
         />
       </Head>
+
+      <MarketingHero />
 
       <Container maxW={'3xl'}>
         <Stack
