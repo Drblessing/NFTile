@@ -61,47 +61,15 @@ export function GetUserNFTs() {
     functionName: 'symbol',
   });
 
-  // Use useState to manage the contract instance and data
-  const [contractInstance, setContractInstance] = useState(null);
-  const [tokenName, setTokenName] = useState('');
+  const contract = useContract({
+    address: mintableAddress as `0x${string}`,
+    abi: mintableABI,
+  });
 
-  // Initialize contract instance when component mounts
   useEffect(() => {
-    const initContract = async () => {
-      try {
-        // Replace this with your Ethereum provider
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-        // Connect to contract
-        const contract = new ethers.Contract(
-          mintableAddress,
-          mintableABI,
-          provider
-        );
-        setContractInstance(contract);
-      } catch (error) {
-        console.error('Error initializing contract:', error);
-      }
-    };
-
-    initContract();
-  }, []);
-
-  // Fetch token name when contract instance is available
-  useEffect(() => {
-    const fetchTokenName = async () => {
-      try {
-        if (contractInstance) {
-          const name = await contractInstance.symbol();
-          setTokenName(name);
-        }
-      } catch (error) {
-        console.error('Error fetching token name:', error);
-      }
-    };
-
-    fetchTokenName();
-  }, [contractInstance]);
+    const test = contract.connect(address);
+    console.log(test.signer);
+  }, [contract]);
 
   return (
     <>
