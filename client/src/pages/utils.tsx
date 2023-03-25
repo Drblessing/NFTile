@@ -17,7 +17,6 @@ import { AppHeader } from '../components/App/AppHeader';
 // Import your DAO and User components here
 import { DAOInfo } from '../components/App/DAOInfo';
 import { UserInfo } from '../components/App/UserInfo';
-import { Deposit } from '../components/App/Deposit';
 
 const App = () => (
   <Container height='100vh'>
@@ -30,7 +29,6 @@ const App = () => (
         <UserInfo />
       </Box>
     </Flex>
-    <Deposit />
   </Container>
 );
 
