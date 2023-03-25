@@ -29,6 +29,7 @@ export function MarketingCTA() {
           rel='stylesheet'
         />
       </Head>
+      <MarketingHero />
 
       <Container maxW={'3xl'}>
         <Stack
@@ -37,8 +38,6 @@ export function MarketingCTA() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 20 }}
         >
-          <MarketingHero />
-
           <Text color={useColorModeValue('gray.800', 'gray.300')}>
             Unlock the true potential of your NFT assets with Fractional NFT DAO
             Treasuries! Empower your DAO by seamlessly pooling, managing, and

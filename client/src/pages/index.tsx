@@ -19,7 +19,7 @@ import { MarketingCTA } from '../components/Marketing/MarketingCTA';
 const Index = () => (
   <>
     <MarketingHeader />
-    <Container height='100vh'>
+    <Container>
       <MarketingCTA />
     </Container>
   </>
