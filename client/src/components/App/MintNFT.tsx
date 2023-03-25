@@ -84,6 +84,7 @@ export function MintNFTForm() {
               type='submit'
               colorScheme='purple'
               disabled={!write || isLoading}
+              mt={-4}
               mb={4}
             >
               {isLoading ? 'Minting...' : 'Mint'}
