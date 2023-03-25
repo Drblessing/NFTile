@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
+import { DAOMenu } from './DAOMenu';
+
 export const AppHeader = () => {
   return (
     <Flex
@@ -25,7 +27,9 @@ export const AppHeader = () => {
         width='100%'
         spacing={{ base: '4rem', md: 4 }}
       >
-        <Box py={{ base: 4, md: 0 }}></Box>
+        <Box py={{ base: 4, md: 0 }}>
+          <DAOMenu />
+        </Box>
 
         <Heading
           as='h1'
