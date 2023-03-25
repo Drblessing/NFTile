@@ -26,7 +26,6 @@ const App = () => (
     <AppHeader />
     <Stack spacing={10}>
       <UserInfo />
-      <Deposit />
       <MintNFTForm />
     </Stack>
   </Container>

@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 
 import { NFTCard } from './NFTCard';
+import { GetUserNFTs } from './GetUserNFTs';
 
 import { erc721ABI } from 'wagmi';
 import { BigNumber } from 'ethers';
@@ -56,6 +57,7 @@ export const UserInfo = () => {
         <CardBody>
           {isConnected ? (
             <Flex>
+              <GetUserNFTs />
               {address === data ? (
                 <>
                   <NFTCard
