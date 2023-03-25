@@ -99,7 +99,7 @@ export const Deposit = () => {
         </CardBody>
         <CardFooter>
           <VStack>
-            <Button colorScheme='purple' onClick={depositToken}>Deposit</Button>
+            <Button colorScheme='purple' mt={-4} onClick={depositToken}>Deposit</Button>
             {isSuccess && (
             <VStack>
               <Heading size="md">
