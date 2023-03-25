@@ -9,7 +9,14 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  useColorMode,
+  Flex,
+  Image,
+  VStack,
+  Link,
 } from '@chakra-ui/react';
+
+// import Image from 'next/image';
 
 import { MarketingHero } from './MarketingHero';
 
@@ -23,29 +30,22 @@ export function MarketingCTA() {
         />
       </Head>
 
-      <MarketingHero />
-
       <Container maxW={'3xl'}>
         <Stack
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
+          py={{ base: 20, md: 20 }}
         >
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}
-          >
-            Make money from <br />
-            <Text as={'span'} color={'green.400'}>
-              your audience
-            </Text>
-          </Heading>
-          <Text color={'gray.500'}>
-            Monetize your content by charging your most loyal readers and reward
-            them loyalty points. Give back to your loyal readers by granting
-            them access to your pre-releases and sneak-peaks.
+          <MarketingHero />
+
+          <Text color={useColorModeValue('gray.800', 'gray.300')}>
+            Unlock the true potential of your NFT assets with Fractional NFT DAO
+            Treasuries! Empower your DAO by seamlessly pooling, managing, and
+            leveraging fractionalized NFTs for collective ownership and
+            decision-making. Join our dapp now and revolutionize the way you
+            engage with NFTs and DAOs, while maximizing value and fostering
+            collaboration.
           </Text>
           <Stack
             direction={'column'}
@@ -54,20 +54,16 @@ export function MarketingCTA() {
             alignSelf={'center'}
             position={'relative'}
           >
-            <Button
-              colorScheme={'green'}
-              bg={'green.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'green.500',
-              }}
-            >
-              Get Started
-            </Button>
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
-              Learn more
-            </Button>
+            <Link href='app'>
+              <Button colorScheme={'purple'} rounded={'full'} px={6}>
+                Open dApp
+              </Button>
+            </Link>
+            <Link href='docs'>
+              <Button variant={'link'} colorScheme={'yellow'} size={'sm'}>
+                Learn more
+              </Button>
+            </Link>
             <Box>
               <Icon
                 as={Arrow}
@@ -81,13 +77,77 @@ export function MarketingCTA() {
                 fontSize={'lg'}
                 fontFamily={'Caveat'}
                 position={'absolute'}
-                right={'-125px'}
-                top={'-15px'}
+                right={'-95px'}
+                top={'-20px'}
                 transform={'rotate(10deg)'}
               >
-                Starting at $15/mo
+                Click here!
               </Text>
             </Box>
+          </Stack>
+          <Text colorScheme={'purple'} fontSize={'2xl'} fontWeight={'bold'}>
+            DAO Ecosystem On
+          </Text>
+          <Link href='https://www.okx.com/okc' alignSelf={'center'}>
+            <Image
+              src='OKChain.png'
+              alt='OK Chain'
+              boxSize='250px'
+              alignSelf={'center'}
+            />
+          </Link>
+          <Text
+            color={useColorModeValue('gray.800', 'gray.300')}
+            fontSize={'lg'}
+            fontWeight={'bold'}
+          >
+            Interoperable with
+          </Text>
+          <Stack
+            direction={'row'}
+            spacing={20}
+            align={'center'}
+            justifyContent={'center'}
+          >
+            <VStack>
+              <Link href='https://www.cherryswap.net/home/'>
+                <Image
+                  src='CherrySwap.svg'
+                  alt='Cherry Swap'
+                  boxSize='100px'
+                  alignSelf={'center'}
+                />
+              </Link>
+              <Text fontSize='lg' fontWeight='bold'>
+                Cherry Swap
+              </Text>
+            </VStack>
+            <VStack>
+              <Link href='https://envelop.is/'>
+                <Image
+                  src='Envelope.png'
+                  alt='DAO ENVELOP'
+                  alignSelf={'center'}
+                  boxSize='100px'
+                />
+              </Link>
+              <Text fontSize='lg' fontWeight='bold'>
+                DAO ENVELOP
+              </Text>
+            </VStack>
+            <VStack>
+              <Link href='https://anyswap.exchange'>
+                <Image
+                  src='anyswap.png'
+                  alt='Anyswap'
+                  alignSelf={'center'}
+                  boxSize='100px'
+                />
+              </Link>
+              <Text fontSize='lg' fontWeight='bold'>
+                Anyswap
+              </Text>
+            </VStack>
           </Stack>
         </Stack>
       </Container>
