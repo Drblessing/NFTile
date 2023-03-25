@@ -59,13 +59,14 @@ export function GetUserNFTs() {
     address: mintableAddress as `0x${string}`,
     abi: mintableABI,
     functionName: 'balanceOf',
+    args: [address],
   });
 
   console.log(data);
 
   return (
     <>
-      <h1>{data}</h1>
+      <h1>{toString(data)}</h1>
     </>
   );
 }
