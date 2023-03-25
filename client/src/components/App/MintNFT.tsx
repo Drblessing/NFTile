@@ -6,6 +6,11 @@ import {
 } from 'wagmi';
 import { useEffect, useState } from 'react';
 
+import {
+  abi as mintableABI,
+  address as mintableAddress,
+} from '../../assets/MyToken.json';
+
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -31,17 +36,9 @@ export function MintNFTForm() {
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
-    abi: [
-      {
-        name: 'mint',
-        type: 'function',
-        stateMutability: 'nonpayable',
-        inputs: [{ internalType: 'uint32', name: 'tokenId', type: 'uint32' }],
-        outputs: [],
-      },
-    ],
-    functionName: 'mint',
+    address: mintableAddress as `0x${string}`,
+    abi: mintableABI,
+    functionName: 'safeMint',
     args: [parseInt(debouncedTokenId)],
     enabled: Boolean(debouncedTokenId),
   });
