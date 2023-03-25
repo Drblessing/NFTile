@@ -4,6 +4,7 @@ import {
   useWaitForTransaction,
   useAccount,
   useContractRead,
+  useContract,
 } from 'wagmi';
 import { useEffect, useState } from 'react';
 
@@ -23,6 +24,8 @@ import {
 
 import MyToken from '../../assets/MyToken.json';
 
+import { ethers } from 'ethers';
+
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -38,22 +41,9 @@ function useDebounce<T>(value: T, delay?: number): T {
 }
 
 export function GetUserNFTs() {
-  const [tokenId, setTokenId] = useState('');
-  const debouncedTokenId = useDebounce(tokenId);
+  const [myTokens, setMyTokens] = useState([]);
   const { address } = useAccount();
   const { abi: mintableABI, address: mintableAddress } = MyToken;
-
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: mintableAddress as `0x${string}`,
-    abi: mintableABI,
-    functionName: 'safeMint',
-    args: [address],
-    enabled: Boolean(address),
-  });
 
   const { data, isError, isLoading } = useContractRead({
     address: mintableAddress as `0x${string}`,
@@ -61,12 +51,63 @@ export function GetUserNFTs() {
     functionName: 'balanceOf',
     args: [address],
   });
+  const {
+    data: data1,
+    isError: isError1,
+    isLoading: isL,
+  } = useContractRead({
+    address: mintableAddress as `0x${string}`,
+    abi: mintableABI,
+    functionName: 'symbol',
+  });
 
-  console.log(data);
+  // Use useState to manage the contract instance and data
+  const [contractInstance, setContractInstance] = useState(null);
+  const [tokenName, setTokenName] = useState('');
+
+  // Initialize contract instance when component mounts
+  useEffect(() => {
+    const initContract = async () => {
+      try {
+        // Replace this with your Ethereum provider
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // Connect to contract
+        const contract = new ethers.Contract(
+          mintableAddress,
+          mintableABI,
+          provider
+        );
+        setContractInstance(contract);
+      } catch (error) {
+        console.error('Error initializing contract:', error);
+      }
+    };
+
+    initContract();
+  }, []);
+
+  // Fetch token name when contract instance is available
+  useEffect(() => {
+    const fetchTokenName = async () => {
+      try {
+        if (contractInstance) {
+          const name = await contractInstance.symbol();
+          setTokenName(name);
+        }
+      } catch (error) {
+        console.error('Error fetching token name:', error);
+      }
+    };
+
+    fetchTokenName();
+  }, [contractInstance]);
 
   return (
     <>
-      <h1>{toString(data)}</h1>
+      <h1>
+        {data.toString()} {data1.toString()}
+      </h1>
     </>
   );
 }
