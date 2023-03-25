@@ -56,13 +56,19 @@ export const UserInfo = () => {
         <CardBody>
           {isConnected ? (
             <Flex>
-              <NFTCard image={punkLink} title='Punk #123' description='Punk' />
               {address === data ? (
-                <NFTCard
-                  image='okxnftSample.png'
-                  title='Mock OKC NFT #1'
-                  description='NFTILE'
-                />
+                <>
+                  <NFTCard
+                    image={punkLink}
+                    title='Punk #123'
+                    description='Punk'
+                  />
+                  <NFTCard
+                    image='okxnftSample.png'
+                    title='Mock OKC NFT #1'
+                    description='NFTILE'
+                  />
+                </>
               ) : null}
             </Flex>
           ) : (

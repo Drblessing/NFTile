@@ -37,9 +37,21 @@ export const DAOInfo = () => {
         </CardHeader>
         <CardBody>
           <Flex>
-            <NFTCard image={punkLink} title='Punk #123' description='Punk' />
-            <NFTCard image={boredApe} title='Ape #524' description='Punk' />
-            <NFTCard image={OKCNFT} title='OKC NFT #2352' description='Punk' />
+            {daoAddress === '0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C' && (
+              <>
+                <NFTCard
+                  image={punkLink}
+                  title='Punk #123'
+                  description='Punk'
+                />
+                <NFTCard image={boredApe} title='Ape #524' description='Punk' />
+                <NFTCard
+                  image={OKCNFT}
+                  title='OKC NFT #2352'
+                  description='Punk'
+                />
+              </>
+            )}
           </Flex>
         </CardBody>
       </Card>

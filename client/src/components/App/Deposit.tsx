@@ -12,9 +12,18 @@ import {
 
 import { useState } from 'react';
 
+import SimulatedDAOTeasury from '../../assets/SimulatedDAOTreasury.json';
+
 export const Deposit = () => {
   const [tokenAddress, setTokenAddress] = useState('');
   const [tokenID, setTokenID] = useState('');
+
+  const { abi: DAOAbi, address: DAOAddress } = SimulatedDAOTeasury;
+
+  console.log(DAOAbi);
+  console.log(DAOAddress);
+
+  
 
   const handleTokenAddressChange = (e: any) => {
     setTokenAddress(e.target.value);
