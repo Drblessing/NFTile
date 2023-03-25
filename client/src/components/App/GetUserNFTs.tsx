@@ -61,6 +61,8 @@ export function GetUserNFTs() {
     functionName: 'balanceOf',
   });
 
+  console.log(data);
+
   return (
     <>
       <h1>{data}</h1>
