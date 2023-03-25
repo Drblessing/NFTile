@@ -8,6 +8,8 @@ import {
   Text,
   Input,
   Stack,
+  Flex,
+  Spacer,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -39,19 +41,17 @@ export const UserInfo = () => {
           <Heading size='md'>🖼️ User NFTs</Heading>
         </CardHeader>
         <CardBody>
-          {/* {isConnected ? (
-            <Stack direction='column' spacing={4}>
-              <NFTCard
-                image={punkLink}
-                title='Punk'
-                description='Punk description'
-              />
-            </Stack>
+          {isConnected ? (
+            <Flex>
+              <NFTCard image={punkLink} title='Punk #123' description='Punk' />
+              <NFTCard image={punkLink} title='Punk #524' description='Punk' />
+              <NFTCard image={punkLink} title='Punk #2352' description='Punk' />
+            </Flex>
           ) : (
             <Text fontSize='2xl' fontWeight={'bold'} color='red.500'>
               Please connect your wallet!
             </Text>
-          )} */}
+          )}
         </CardBody>
       </Card>
     </>

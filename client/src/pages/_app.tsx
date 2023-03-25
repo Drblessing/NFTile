@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RainbowKitProvider chains={chains}>
         <ChakraProvider theme={theme}>
           <DaoProvider>
-            <Component {...pageProps} />
+            <DynamicComponent {...pageProps} />
           </DaoProvider>
         </ChakraProvider>
       </RainbowKitProvider>
