@@ -1,4 +1,12 @@
 import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+  useAccount,
+  useSigner
+} from 'wagmi';
+
+import {
   Heading,
   Card,
   CardHeader,
@@ -8,22 +16,29 @@ import {
   Text,
   Input,
   Stack,
+  VStack,
+  Link
 } from '@chakra-ui/react';
+
+import { ethers } from 'ethers';
 
 import { useState } from 'react';
 
+import MyToken from '../../assets/MyToken.json';
 import SimulatedDAOTeasury from '../../assets/SimulatedDAOTreasury.json';
 
 export const Deposit = () => {
   const [tokenAddress, setTokenAddress] = useState('');
   const [tokenID, setTokenID] = useState('');
 
+  const { address } = useAccount();
+  const { data: signer } = useSigner();
+
+  const { abi: mtknABI, address: mtknAddress } = MyToken;
   const { abi: DAOAbi, address: DAOAddress } = SimulatedDAOTeasury;
 
   console.log(DAOAbi);
   console.log(DAOAddress);
-
-  
 
   const handleTokenAddressChange = (e: any) => {
     setTokenAddress(e.target.value);
@@ -32,6 +47,34 @@ export const Deposit = () => {
   const handleTokenIDChange = (e: any) => {
     setTokenID(e.target.value);
   };
+
+  const depositToken = async () => {
+    let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI);
+
+    await mtkn.connect(signer);
+
+    await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
+
+    write?.();
+  }
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    address: DAOAddress as `0x${string}`,
+    abi: DAOAbi,
+    functionName: 'deposit',
+    args: [tokenAddress, tokenID],
+    enabled: Boolean(address),
+  })
+
+  const { data, error, isError, write } = useContractWrite(config);
+
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
 
   return (
     <>
@@ -55,7 +98,17 @@ export const Deposit = () => {
           </Stack>
         </CardBody>
         <CardFooter>
-          <Button colorScheme='purple'>Deposit</Button>
+          <VStack>
+            <Button colorScheme='purple' onClick={depositToken}>Deposit</Button>
+            {isSuccess && (
+            <VStack>
+              <Heading size="md">
+                Successfully Deposited an NFT
+              </Heading>
+              <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>OKLink</Link>
+            </VStack>
+          )}
+          </VStack>
         </CardFooter>
       </Card>
     </>

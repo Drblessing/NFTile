@@ -18,6 +18,8 @@ import {
   Stack,
   FormControl,
   Spacer,
+  VStack,
+  Link
 } from '@chakra-ui/react';
 
 import MyToken from '../../assets/MyToken.json';
@@ -77,27 +79,25 @@ export function MintNFTForm() {
               write?.();
             }}
           >
+            <VStack>
             <Button
               type='submit'
               colorScheme='purple'
               disabled={!write || isLoading}
+              mb={4}
             >
               {isLoading ? 'Minting...' : 'Mint'}
             </Button>
-            <Spacer />
             {isSuccess && (
-              <div>
-                Successfully minted your NFT!
-                <div>
-                  <a href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>
-                    OKLink
-                  </a>
-                </div>
-              </div>
+              <VStack>
+                <Heading size="md">Successfully minted your NFT!</Heading>
+                <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>OKLink</Link>
+              </VStack>
             )}
             {(isPrepareError || isError) && (
               <div>Error: {(prepareError || error)?.message}</div>
             )}
+            </VStack>
           </form>
         </CardFooter>
       </Card>
