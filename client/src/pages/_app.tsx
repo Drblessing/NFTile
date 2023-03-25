@@ -9,6 +9,8 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
+import { DaoProvider } from '../context/DAOContext';
+
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
   [publicProvider()]
@@ -30,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
         <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
+          <DaoProvider>
+            <Component {...pageProps} />
+          </DaoProvider>
         </ChakraProvider>
       </RainbowKitProvider>
     </WagmiConfig>
