@@ -22,6 +22,8 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
+import { OpenDappButton } from './OpenDappButton';
+
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
 export function MarketingHeader() {
@@ -81,7 +83,7 @@ export function MarketingHeader() {
           direction={'row'}
           spacing={6}
         >
-          <DarkModeSwitch />
+          <OpenDappButton />
           <DarkModeSwitch />
         </Stack>
       </Flex>
