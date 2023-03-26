@@ -2,7 +2,13 @@ import { Box, Image, Text, VStack, Link } from '@chakra-ui/react';
 
 import { JazzIcon } from './DAOMenu';
 
-export const NFTCard = ({ image, title, description, jazzicon = false }) => {
+export const NFTCard = ({
+  image,
+  title,
+  description,
+  jazzicon = false,
+  seed = 0,
+}) => {
   const imageSize = '200px';
 
   if (jazzicon) {
@@ -14,8 +20,9 @@ export const NFTCard = ({ image, title, description, jazzicon = false }) => {
             justifyContent='center'
             width={imageSize}
             height={imageSize}
+            overflow='hidden' // Add overflow hidden
           >
-            <JazzIcon seed={240} size={parseInt(imageSize)} />
+            <JazzIcon seed={seed} size={parseInt(imageSize)} />
           </Box>
           <VStack p='6' spacing={3} align='start'>
             <Text fontWeight='bold' fontSize='xl'>

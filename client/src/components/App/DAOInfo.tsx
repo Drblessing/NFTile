@@ -278,6 +278,7 @@ export const DAOInfo = () => {
                     key={index}
                     image={OKCNFT}
                     title={`Mock NFT #${token?.underlyingToken?.tokenId.toString()}`}
+                    seed={token?.underlyingToken?.tokenId.toString()}
                     description='MOCK NFT'
                     jazzicon={true}
                   />
