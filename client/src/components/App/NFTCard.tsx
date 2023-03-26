@@ -8,17 +8,10 @@ export const NFTCard = ({ image, title, description, jazzicon = false }) => {
   if (jazzicon) {
     return (
       <Box margin={3}>
-        <Box
-          maxW='sm'
-          borderWidth='1px'
-          borderRadius='lg'
-          overflow='hidden'
-          boxShadow='lg'
-        >
+        <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
           <Box
             display='flex'
             justifyContent='center'
-            alignItems='center'
             width={imageSize}
             height={imageSize}
           >

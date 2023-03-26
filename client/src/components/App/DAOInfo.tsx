@@ -246,11 +246,11 @@ export const DAOInfo = () => {
     data10,
   ]);
 
-  console.log(dataReads);
+  console.log(dataReads[0]?.underlyingToken?.tokenId.toString());
 
   return (
     <>
-      <Card align='center' overflowY="scroll" maxH="40vh" h="40vh">
+      <Card align='center' overflowY='scroll' maxH='40vh' h='40vh'>
         <CardHeader>
           <Heading size='md'>🖼️ DAO NFTs</Heading>
         </CardHeader>
@@ -277,8 +277,8 @@ export const DAOInfo = () => {
                   <NFTCard
                     key={index}
                     image={OKCNFT}
-                    title='OKC NFT #2352'
-                    description='Punk'
+                    title={`Mock NFT #${token?.underlyingToken?.tokenId.toString()}`}
+                    description='MOCK NFT'
                     jazzicon={true}
                   />
                 ))}
