@@ -91,7 +91,7 @@ export const Deposit = () => {
 
   return (
     <>
-      <Card align='center'>
+      <Card align='center' maxW="40vw" w="40vw">
         <CardHeader>
           <Heading size='md'>🏦 Deposit</Heading>
         </CardHeader>
