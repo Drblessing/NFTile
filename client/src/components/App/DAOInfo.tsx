@@ -250,7 +250,7 @@ export const DAOInfo = () => {
 
   return (
     <>
-      <Card align='center' overflow="scroll" maxH="40vh">
+      <Card align='center' overflowY="scroll" maxH="40vh" h="40vh">
         <CardHeader>
           <Heading size='md'>🖼️ DAO NFTs</Heading>
         </CardHeader>
