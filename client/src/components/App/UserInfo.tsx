@@ -50,7 +50,7 @@ export const UserInfo = () => {
 
   return (
     <>
-      <Card align='center'>
+      <Card align='center' overflow="scroll" maxH="40vh">
         <CardHeader>
           <Heading size='md'>🖼️ User NFTs</Heading>
         </CardHeader>

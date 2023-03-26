@@ -65,7 +65,7 @@ export const UserTXs = () => {
 
   return (
     <>
-      <Card align='center'>
+      <Card align='center' overflow="scroll" maxH="40vh">
         <CardHeader>
           <Heading size='md'>⚙️ User Pending TXs</Heading>
         </CardHeader>

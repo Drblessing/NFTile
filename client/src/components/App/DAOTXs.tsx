@@ -61,27 +61,13 @@ export const DAOTXs = () => {
 
   return (
     <>
-      <Card align='center'>
+      <Card align='center' overflow="scroll" maxH="40vh">
         <CardHeader>
           <Heading size='md'>⚙️ DAO TXs</Heading>
         </CardHeader>
         <CardBody>
           <Flex flexDirection="column">
-            {daoAddress === '0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C' && (
-              <>
-                <NFTCard
-                  image={punkLink}
-                  title='Punk #123'
-                  description='Punk'
-                />
-                <NFTCard image={boredApe} title='Ape #524' description='Punk' />
-                <NFTCard
-                  image={OKCNFT}
-                  title='OKC NFT #2352'
-                  description='Punk'
-                />
-              </>
-            )}
+            <Card></Card>
           </Flex>
         </CardBody>
       </Card>
