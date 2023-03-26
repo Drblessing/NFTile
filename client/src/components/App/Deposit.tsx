@@ -50,7 +50,7 @@ export const Deposit = () => {
 
   const depositToken = async () => {
     setSuccess(false);
-    
+
     let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI);
 
     mtkn = await mtkn.connect(signer);
