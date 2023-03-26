@@ -27,6 +27,7 @@ import {
 import MyToken from '../../assets/MyToken.json';
 
 import { ethers } from 'ethers';
+import { NFTCard } from './NFTCard';
 
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -81,18 +82,33 @@ export function GetUserNFTs() {
 
     for (let i = 0; i < Infinity; i++) {
       try {
-        tokensInUserWallet.push(await mtkn.tokenOfOwnerByIndex(await signer.getAddress(), i));
+        tokensInUserWallet.push(
+          await mtkn.tokenOfOwnerByIndex(await signer.getAddress(), i)
+        );
       } catch (e) {
         break;
       }
     }
 
     console.log(tokensInUserWallet);
+    setMyTokens(tokensInUserWallet);
   };
 
   useEffect(() => {
     loadStuff();
   }, []);
 
-  return <></>;
+  return (
+    <>
+      {myTokens.map((token, index) => (
+        <NFTCard
+          key={index}
+          title={`Mock NFT #${token}`}
+          seed={token}
+          description='MOCK NFT'
+          jazzicon={true}
+        />
+      ))}
+    </>
+  );
 }

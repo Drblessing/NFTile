@@ -3,7 +3,7 @@ import { Box, Image, Text, VStack, Link } from '@chakra-ui/react';
 import { JazzIcon } from './DAOMenu';
 
 export const NFTCard = ({
-  image,
+  image = 'false',
   title,
   description,
   jazzicon = false,

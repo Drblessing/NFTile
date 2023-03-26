@@ -10,6 +10,7 @@ import {
   Stack,
   Flex,
   Spacer,
+  Grid,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -21,6 +22,8 @@ import { GetUserNFTs } from './GetUserNFTs';
 
 import { erc721ABI } from 'wagmi';
 import { BigNumber } from 'ethers';
+
+import MyToken from '../../assets/MyToken.json';
 
 export const UserInfo = () => {
   const { address, isConnected } = useAccount();
@@ -56,8 +59,7 @@ export const UserInfo = () => {
         </CardHeader>
         <CardBody>
           {isConnected ? (
-            <Flex>
-              <GetUserNFTs />
+            <Grid templateColumns='repeat(3, 1fr)' p={6}>
               {address === data ? (
                 <>
                   <NFTCard
@@ -72,7 +74,8 @@ export const UserInfo = () => {
                   />
                 </>
               ) : null}
-            </Flex>
+              <GetUserNFTs />
+            </Grid>
           ) : (
             <Text fontSize='2xl' fontWeight={'bold'} color='red.500'>
               Please connect your wallet!
