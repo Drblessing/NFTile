@@ -12,7 +12,8 @@ import {
   Text,
   Center,
   HStack,
-  Button
+  Button,
+  useToast
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
@@ -30,6 +31,8 @@ export const UserTXs = () => {
   const { daoAddress, setDaoAddress } = useDao();
 
   const { abi: DAOAbi, address: DAOAddress } = SimulatedDAOTeasury;
+
+  const toast = useToast();
 
   const punkLink =
     'https://cdn.dribbble.com/users/2200637/screenshots/17470306/media/378cb6b7c1e9c4b264d5233cad3f71de.jpg?compress=1&resize=400x300';
@@ -66,6 +69,44 @@ export const UserTXs = () => {
     pullTXs();
   }, []);
 
+  const acceptTX = async (tx: string) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+        
+    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
+
+    try {
+        await DAO.confirmTransaction(tx);
+    } catch (e) {
+        toast({
+            title: 'Unable to confirm',
+            description: "You have most likely already confirmed",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+        })
+    }
+  }
+
+  const rejectTX = async (tx: string) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+        
+    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
+    
+    try {
+        await DAO.revokeConfirmation(tx);
+    } catch (e) {
+        toast({
+            title: 'Unable to revoke',
+            description: "You need to confirm before you can revoke your confirmation",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+        })
+    }
+  }
+
   const getTXCards = () => {
     let txCards = [];
 
@@ -76,8 +117,8 @@ export const UserTXs = () => {
                 <HStack spacing="8vw">
                     <Text>{txs[tx][3] ? "Completed TX" : "Pending TX"}</Text>
                     <HStack>
-                        <Button>Accept</Button>
-                        <Button>Reject</Button>
+                        <Button onClick={() => acceptTX(tx)}>Accept</Button>
+                        <Button onClick={() => rejectTX(tx)}>Revoke</Button>
                     </HStack>
                 </HStack>
             </Center>
