@@ -85,7 +85,7 @@ export const DAOMenu = () => {
     } else if (address === ArbitrumDAO) {
       return 'Arbitrum DAO';
     } else if (address === GnosisMultisig) {
-      return 'Gnosis Multisig';
+      return 'NFTile DAO';
     } else {
       return 'Unknown DAO';
     }
@@ -115,7 +115,7 @@ export const DAOMenu = () => {
         <DAOMenuItem
           daoAddress={GnosisMultisig}
           setDaoAddress={setDaoAddress}
-          name='Gnosis Multisig'
+          name='NFTile DAO'
         />
       </MenuList>
     </Menu>

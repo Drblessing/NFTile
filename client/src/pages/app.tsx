@@ -23,25 +23,25 @@ import { UserTXs } from '../components/App/UserTXs';
 import { Deposit } from '../components/App/Deposit';
 
 const App = () => (
-  <Container height='100vh'>
+  <Container height='200vh'>
     <AppHeader />
-    <VStack w="100%">
-    <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
-      <Box flex='1' padding='5' maxWidth='50%'>
-        <DAOInfo />
-      </Box>
-      <Box flex='1' padding='5' maxWidth='50%'>
-        <UserInfo />
-      </Box>
-    </Flex>
-    <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
-      <Box flex='1' padding='5' maxWidth='50%'>
-        <DAOTXs />
-      </Box>
-      <Box flex='1' padding='5' maxWidth='50%'>
-        <UserTXs />
-      </Box>
-    </Flex>
+    <VStack w='100%'>
+      <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
+        <Box flex='1' padding='5' maxWidth='50%'>
+          <DAOInfo />
+        </Box>
+        <Box flex='1' padding='5' maxWidth='50%'>
+          <UserInfo />
+        </Box>
+      </Flex>
+      <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
+        <Box flex='1' padding='5' maxWidth='50%'>
+          <DAOTXs />
+        </Box>
+        <Box flex='1' padding='5' maxWidth='50%'>
+          <UserTXs />
+        </Box>
+      </Flex>
     </VStack>
     <Deposit />
   </Container>

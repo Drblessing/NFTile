@@ -85,11 +85,5 @@ export function GetUserNFTs() {
     loadStuff();
   }, []);
 
-  return (
-    <>
-      <h1>
-        {data?.toString()} {data1?.toString()}
-      </h1>
-    </>
-  );
+  return <></>;
 }
