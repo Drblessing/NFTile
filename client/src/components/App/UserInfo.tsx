@@ -50,7 +50,7 @@ export const UserInfo = () => {
 
   return (
     <>
-      <Card align='center' overflowY="scroll" maxH="40vh" h="40vh">
+      <Card align='center' overflowY='scroll' maxH='40vh' h='40vh'>
         <CardHeader>
           <Heading size='md'>🖼️ User NFTs</Heading>
         </CardHeader>
@@ -67,7 +67,7 @@ export const UserInfo = () => {
                   />
                   <NFTCard
                     image='okxnftSample.png'
-                    title='Mock OKC NFT #1'
+                    title='Mock OKC #1'
                     description='NFTILE'
                   />
                 </>
