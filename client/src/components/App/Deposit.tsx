@@ -52,7 +52,11 @@ export const Deposit = () => {
 
     await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
 
-    write?.();
+    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
+
+    await DAO.deposit(tokenAddress, tokenID);
+
+    // write?.();
   };
 
   const {
