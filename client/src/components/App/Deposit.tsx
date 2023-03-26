@@ -97,7 +97,7 @@ export const Deposit = () => {
         </CardHeader>
         <CardBody>
           <Stack direction='column' spacing={4}>
-            <Text>Deposit your NFT to the contract here:</Text>
+            <Text>Deposit your NFT into the contract here:</Text>
             <Input
               value={tokenAddress}
               onChange={handleTokenAddressChange}
