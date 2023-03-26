@@ -38,7 +38,7 @@ export const JazzIconGrid: React.FC = () => {
     }
   }, []);
 
-  return <div ref={gridRef}></div>;
+  return <Flex align={'center'} justify={'center'} ref={gridRef}></Flex>;
 };
 
 export const JazzIcon: React.FC<{ seed: number; size?: number }> = ({
