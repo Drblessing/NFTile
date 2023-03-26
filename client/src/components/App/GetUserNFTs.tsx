@@ -5,7 +5,9 @@ import {
   useAccount,
   useContractRead,
   useContract,
+  useSigner,
 } from 'wagmi';
+
 import { useEffect, useState } from 'react';
 
 import {
@@ -43,6 +45,8 @@ function useDebounce<T>(value: T, delay?: number): T {
 export function GetUserNFTs() {
   const [myTokens, setMyTokens] = useState([]);
   const { address } = useAccount();
+  const { data: signer } = useSigner();
+
   const { abi: mintableABI, address: mintableAddress } = MyToken;
 
   const { data, isError, isLoading } = useContractRead({
@@ -61,15 +65,23 @@ export function GetUserNFTs() {
     functionName: 'symbol',
   });
 
-  const contract = useContract({
-    address: mintableAddress as `0x${string}`,
-    abi: mintableABI,
-  });
+  const loadStuff = async () => {
+    let mtkn = new ethers.Contract(
+      mintableAddress as `0x${string}`,
+      mintableABI
+    );
+
+    mtkn = mtkn.connect(signer);
+
+    if (mtkn) {
+      //   const test = await mtkn.symbol();
+      //   console.log(test);
+    }
+  };
 
   useEffect(() => {
-    const test = contract.connect(address);
-    console.log(test.signer);
-  }, [contract]);
+    loadStuff();
+  }, []);
 
   return (
     <>

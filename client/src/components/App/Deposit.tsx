@@ -3,7 +3,7 @@ import {
   useContractWrite,
   useWaitForTransaction,
   useAccount,
-  useSigner
+  useSigner,
 } from 'wagmi';
 
 import {
@@ -17,7 +17,7 @@ import {
   Input,
   Stack,
   VStack,
-  Link
+  Link,
 } from '@chakra-ui/react';
 
 import { ethers } from 'ethers';
@@ -37,9 +37,6 @@ export const Deposit = () => {
   const { abi: mtknABI, address: mtknAddress } = MyToken;
   const { abi: DAOAbi, address: DAOAddress } = SimulatedDAOTeasury;
 
-  console.log(DAOAbi);
-  console.log(DAOAddress);
-
   const handleTokenAddressChange = (e: any) => {
     setTokenAddress(e.target.value);
   };
@@ -56,7 +53,7 @@ export const Deposit = () => {
     await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
 
     write?.();
-  }
+  };
 
   const {
     config,
@@ -68,7 +65,7 @@ export const Deposit = () => {
     functionName: 'deposit',
     args: [tokenAddress, tokenID],
     enabled: Boolean(address),
-  })
+  });
 
   const { data, error, isError, write } = useContractWrite(config);
 
@@ -99,15 +96,17 @@ export const Deposit = () => {
         </CardBody>
         <CardFooter>
           <VStack>
-            <Button colorScheme='purple' mt={-4} onClick={depositToken}>Deposit</Button>
+            <Button colorScheme='purple' mt={-4} onClick={depositToken}>
+              Deposit
+            </Button>
             {isSuccess && (
-            <VStack>
-              <Heading size="md">
-                Successfully Deposited an NFT
-              </Heading>
-              <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>OKLink</Link>
-            </VStack>
-          )}
+              <VStack>
+                <Heading size='md'>Successfully Deposited an NFT</Heading>
+                <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>
+                  OKLink
+                </Link>
+              </VStack>
+            )}
           </VStack>
         </CardFooter>
       </Card>
