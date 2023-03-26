@@ -48,7 +48,7 @@ export const Deposit = () => {
   const depositToken = async () => {
     let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI);
 
-    await mtkn.connect(signer);
+    mtkn = await mtkn.connect(signer);
 
     await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
 

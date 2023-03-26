@@ -66,6 +66,8 @@ export function GetUserNFTs() {
   });
 
   const loadStuff = async () => {
+    if (!signer) return;
+
     let mtkn = new ethers.Contract(
       mintableAddress as `0x${string}`,
       mintableABI
@@ -73,10 +75,7 @@ export function GetUserNFTs() {
 
     mtkn = mtkn.connect(signer);
 
-    if (mtkn) {
-      //   const test = await mtkn.symbol();
-      //   console.log(test);
-    }
+    console.log(await mtkn.symbol());
   };
 
   useEffect(() => {
