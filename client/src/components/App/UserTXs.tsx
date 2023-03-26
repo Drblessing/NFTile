@@ -10,6 +10,9 @@ import {
   CardBody,
   CardHeader,
   Text,
+  Center,
+  HStack,
+  Button
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
@@ -67,14 +70,20 @@ export const UserTXs = () => {
     let txCards = [];
 
     for (let tx in txs) {
-        txCards.push(<Card key={tx}>
-            <CardBody>
-                <Text>View a summary of all your customers over the last month.</Text>
-            </CardBody>
-        </Card>);
+        txCards.push(<Card key={tx} width="30vw" background="blackAlpha.400">
+        <CardBody>
+            <Center>
+                <HStack spacing="8vw">
+                    <Text>{txs[tx][3] ? "Completed TX" : "Pending TX"}</Text>
+                    <HStack>
+                        <Button>Accept</Button>
+                        <Button>Reject</Button>
+                    </HStack>
+                </HStack>
+            </Center>
+        </CardBody>
+    </Card>);
     }
-
-    console.log(txCards);
 
     return txCards;
   }

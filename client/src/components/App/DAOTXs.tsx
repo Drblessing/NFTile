@@ -10,6 +10,7 @@ import {
   CardBody,
   CardHeader,
   Text,
+  Center
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
 
@@ -63,14 +64,14 @@ export const DAOTXs = () => {
     let txCards = [];
 
     for (let tx in txs) {
-        txCards.push(<Card key={tx}>
+        txCards.push(<Card key={tx} width="30vw" background="blackAlpha.400">
             <CardBody>
-                <Text>View a summary of all your customers over the last month.</Text>
+                <Center>
+                    <Text>{txs[tx][3] ? "Completed TX" : "Pending TX"}</Text>
+                </Center>
             </CardBody>
         </Card>);
     }
-
-    console.log(txCards);
 
     return txCards;
   }
