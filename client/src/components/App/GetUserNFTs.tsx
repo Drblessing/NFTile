@@ -65,8 +65,11 @@ export function GetUserNFTs() {
     functionName: 'symbol',
   });
 
+  // console.log(signer); Signer takes about 2-3 function calls in order to register
+
   const loadStuff = async () => {
-    if (!signer) return;
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
 
     let mtkn = new ethers.Contract(
       mintableAddress as `0x${string}`,
