@@ -16,10 +16,17 @@ import { DarkModeSwitch } from '../DarkModeSwitch';
 import { useDao } from '../../context/DAOContext';
 import { formattedAddress } from '../../lib/formattedAddress';
 
+import SimulatedDAOTeasury from '../../assets/SimulatedDAOTreasury.json';
+
 import { NFTCard } from './NFTCard';
+import { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
 
 export const UserTXs = () => {
+  const [txs, setTXs] = useState([]);
   const { daoAddress, setDaoAddress } = useDao();
+
+  const { abi: DAOAbi, address: DAOAddress } = SimulatedDAOTeasury;
 
   const punkLink =
     'https://cdn.dribbble.com/users/2200637/screenshots/17470306/media/378cb6b7c1e9c4b264d5233cad3f71de.jpg?compress=1&resize=400x300';
@@ -29,14 +36,41 @@ export const UserTXs = () => {
 
   const OKCNFT = '/OKCNFT.png';
 
+  const pullTXs = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+        
+    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
+
+    let totalTXCount = (await DAO.getTransactionCount()).toNumber();
+
+    let totalTXs = [];
+
+    if (totalTXCount > 0) {
+        for (let i = 0; i < totalTXCount; i++) {
+            let tx = await DAO.transactions(i);
+
+            if (!tx[3]) {
+                totalTXs.push(tx);
+            }
+        }
+    }
+
+    setTXs(totalTXCount);
+  };
+
+  useEffect(() => {
+    pullTXs();
+  }, []);
+
   return (
     <>
       <Card align='center'>
         <CardHeader>
-          <Heading size='md'>🖼️ DAO NFTs</Heading>
+          <Heading size='md'>⚙️ User Pending TXs</Heading>
         </CardHeader>
         <CardBody>
-          <Flex>
+          <Flex flexDirection="column">
             {daoAddress === '0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C' && (
               <>
                 <NFTCard

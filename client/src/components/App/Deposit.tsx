@@ -51,15 +51,16 @@ export const Deposit = () => {
   const depositToken = async () => {
     setSuccess(false);
     
-    let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI);
-
-    mtkn = await mtkn.connect(signer);
+    let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI, signer);
+    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
 
     let tx = await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
 
     await tx.wait();
 
-    let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
+    /* Initiate Multisig TX */
+    // await DAO.submitTransaction(mtknAddress, 0, mtkn.interface.encodeFunctionData("safeMint", [DAOAddress]));
+    /* End Snippet */
 
     tx = await DAO.deposit(tokenAddress, tokenID);
 
