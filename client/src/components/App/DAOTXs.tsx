@@ -52,12 +52,28 @@ export const DAOTXs = () => {
         }
     }
 
-    setTXs(totalTXCount);
+    setTXs(totalTXs);
   };
 
   useEffect(() => {
     pullTXs();
   }, []);
+
+  const getTXCards = () => {
+    let txCards = [];
+
+    for (let tx in txs) {
+        txCards.push(<Card key={tx}>
+            <CardBody>
+                <Text>View a summary of all your customers over the last month.</Text>
+            </CardBody>
+        </Card>);
+    }
+
+    console.log(txCards);
+
+    return txCards;
+  }
 
   return (
     <>
@@ -67,7 +83,7 @@ export const DAOTXs = () => {
         </CardHeader>
         <CardBody>
           <Flex flexDirection="column">
-            <Card></Card>
+            {getTXCards()}
           </Flex>
         </CardBody>
       </Card>

@@ -56,7 +56,7 @@ export const UserTXs = () => {
         }
     }
 
-    setTXs(totalTXCount);
+    setTXs(totalTXs);
   };
 
   useEffect(() => {
@@ -66,11 +66,15 @@ export const UserTXs = () => {
   const getTXCards = () => {
     let txCards = [];
 
-    txCards.push(<Card>
-        <CardBody>
-            <Text>View a summary of all your customers over the last month.</Text>
-        </CardBody>
-    </Card>);
+    for (let tx in txs) {
+        txCards.push(<Card key={tx}>
+            <CardBody>
+                <Text>View a summary of all your customers over the last month.</Text>
+            </CardBody>
+        </Card>);
+    }
+
+    console.log(txCards);
 
     return txCards;
   }
