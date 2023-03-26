@@ -31,6 +31,9 @@ export const Deposit = () => {
   const [tokenAddress, setTokenAddress] = useState('');
   const [tokenID, setTokenID] = useState('');
 
+  const [txHash, setTXHash] = useState('');
+  const [isSuccess, setSuccess] = useState(false);
+
   const { address } = useAccount();
   const { data: signer } = useSigner();
 
@@ -46,15 +49,23 @@ export const Deposit = () => {
   };
 
   const depositToken = async () => {
+    setSuccess(false);
+    
     let mtkn = new ethers.Contract(mtknAddress as `0x${string}`, mtknABI);
 
     mtkn = await mtkn.connect(signer);
 
-    await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
+    let tx = await mtkn.approve(DAOAddress as `0x${string}`, tokenID);
+
+    await tx.wait();
 
     let DAO = new ethers.Contract(DAOAddress as `0x${string}`, DAOAbi, signer);
 
-    await DAO.deposit(tokenAddress, tokenID);
+    tx = await DAO.deposit(tokenAddress, tokenID);
+
+    setTXHash(tx.hash);
+
+    setSuccess(true);
 
     // write?.();
   };
@@ -73,9 +84,9 @@ export const Deposit = () => {
 
   const { data, error, isError, write } = useContractWrite(config);
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
+  /*const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
-  });
+  });*/
 
   return (
     <>
@@ -106,7 +117,7 @@ export const Deposit = () => {
             {isSuccess && (
               <VStack>
                 <Heading size='md'>Successfully Deposited an NFT</Heading>
-                <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>
+                <Link href={`https://www.oklink.com/okc-test/tx/${txHash}`}>
                   OKLink
                 </Link>
               </VStack>
