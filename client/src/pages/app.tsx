@@ -7,6 +7,7 @@ import {
   ListItem,
   Flex,
   Box,
+  VStack,
 } from '@chakra-ui/react';
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons';
 
@@ -17,11 +18,14 @@ import { AppHeader } from '../components/App/AppHeader';
 // Import your DAO and User components here
 import { DAOInfo } from '../components/App/DAOInfo';
 import { UserInfo } from '../components/App/UserInfo';
+import { DAOTXs } from '../components/App/DAOTXs';
+import { UserTXs } from '../components/App/UserTXs';
 import { Deposit } from '../components/App/Deposit';
 
 const App = () => (
   <Container height='100vh'>
     <AppHeader />
+    <VStack w="100%">
     <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
       <Box flex='1' padding='5' maxWidth='50%'>
         <DAOInfo />
@@ -30,6 +34,15 @@ const App = () => (
         <UserInfo />
       </Box>
     </Flex>
+    <Flex width='100%' alignItems='flex-start' justifyContent='space-between'>
+      <Box flex='1' padding='5' maxWidth='50%'>
+        <DAOTXs />
+      </Box>
+      <Box flex='1' padding='5' maxWidth='50%'>
+        <UserTXs />
+      </Box>
+    </Flex>
+    </VStack>
     <Deposit />
   </Container>
 );
