@@ -77,7 +77,7 @@ export const DAOMenu = () => {
 
   const CRVDAO = '0xD533a949740bb3306d119CC777fa900bA034cd52';
   const ArbitrumDAO = '0xF3FC178157fb3c87548bAA86F9d24BA38E649B58';
-  const GnosisMultisig = '0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C';
+  const GnosisMultisig = '0xFd9b9A6B5f99f854d36FFEB801AFe4CC7f7ab982';
 
   const getDaoName = (address: string) => {
     if (address === CRVDAO) {

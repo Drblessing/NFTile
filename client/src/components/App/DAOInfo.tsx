@@ -29,6 +29,8 @@ export const DAOInfo = () => {
 
   const OKCNFT = '/OKCNFT.png';
 
+  
+
   return (
     <>
       <Card align='center'>
@@ -37,7 +39,7 @@ export const DAOInfo = () => {
         </CardHeader>
         <CardBody>
           <Flex>
-            {daoAddress === '0xC61b9BB3A7a0767E3179713f3A5c7a9aeDCE193C' && (
+            {daoAddress === '0xD533a949740bb3306d119CC777fa900bA034cd52' && (
               <>
                 <NFTCard
                   image={punkLink}
