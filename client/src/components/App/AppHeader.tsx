@@ -6,12 +6,19 @@ import {
   Link as ChakraLin,
   Spacer,
   Stack,
+  useColorMode,
+  IconButton,
+  Link,
+  Button,
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../DarkModeSwitch';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 import { DAOMenu } from './DAOMenu';
 
 export const AppHeader = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === 'dark';
   return (
     <Flex
       as='header'
@@ -27,8 +34,13 @@ export const AppHeader = () => {
         width='100%'
         spacing={{ base: '4rem', md: 4 }}
       >
-        <Box py={{ base: 4, md: 0 }}>
+        <Box py={{ base: 4, md: 0 }} mr={3}>
           <DAOMenu />
+          <Link ml={4} href='utils'>
+            <Button aria-label='Toggle Theme' colorScheme='purple'>
+              Mint NFT
+            </Button>
+          </Link>
         </Box>
 
         <Heading
