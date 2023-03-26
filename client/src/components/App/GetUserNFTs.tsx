@@ -73,12 +73,21 @@ export function GetUserNFTs() {
 
     let mtkn = new ethers.Contract(
       mintableAddress as `0x${string}`,
-      mintableABI
+      mintableABI,
+      signer
     );
 
-    mtkn = mtkn.connect(signer);
+    let tokensInUserWallet = [];
 
-    console.log(await mtkn.symbol());
+    for (let i = 0; i < Infinity; i++) {
+      try {
+        tokensInUserWallet.push(await mtkn.tokenOfOwnerByIndex(await signer.getAddress(), i));
+      } catch (e) {
+        break;
+      }
+    }
+
+    console.log(tokensInUserWallet);
   };
 
   useEffect(() => {
