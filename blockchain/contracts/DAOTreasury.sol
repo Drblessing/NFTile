@@ -1,17 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-
-import { UD60x18, ud, intoUint256 } from "@prb/math/src/UD60x18.sol";
-
-import "./DivisibleNFT.sol";
-
-// Maybe create a Multisig contract then inherit it in the SimulatedDAOTreasury
-
-contract SimulatedDAOTreasury is IERC721Receiver {
+contract SimulatedDAOTreasury {
     event Deposit(address indexed sender, uint amount, uint balance);
     event SubmitTransaction(
         address indexed owner,
@@ -40,22 +30,6 @@ contract SimulatedDAOTreasury is IERC721Receiver {
     mapping(uint => mapping(address => bool)) public isConfirmed;
 
     Transaction[] public transactions;
-
-    // "DAO" and Divisible NFT functionality
-    event Deposited(address indexed token, uint256 indexed tokenId, address indexed divisibleNFT);
-
-    struct UnderlyingToken {
-        address token;
-        uint256 tokenId;
-    }
-
-    struct WrappedToken {
-        address token;
-        uint256 amount;
-        UnderlyingToken underlyingToken;
-    }
-
-    WrappedToken[] public tokenAddresses; // abi.encode token address + tokenId
 
     modifier onlyOwner() {
         require(isOwner[msg.sender], "not owner");
@@ -195,30 +169,5 @@ contract SimulatedDAOTreasury is IERC721Receiver {
             transaction.executed,
             transaction.numConfirmations
         );
-    }
-   
-    function deposit(address token, uint256 tokenId) onlyOwner public {
-        IERC721(token).safeTransferFrom(msg.sender, address(this), tokenId); // Transfer NFT into this contract
-
-        DivisibleNFT DNFT = new DivisibleNFT(); // Create new Divisible NFT
-
-        IERC721(token).approve(address(DNFT), tokenId);
-
-        DNFT.wrap(address(this), 1e18, IERC721Metadata(token).tokenURI(tokenId), token, tokenId); // Wrap NFT
-
-        tokenAddresses.push(WrappedToken(address(DNFT), 1e18, UnderlyingToken(token, tokenId)));
-
-        // Create a Pull-Payment model to claim fractions of NFT or Just Distribute to them directly
-
-        for (uint i = 0; i < owners.length; i++) {
-            UD60x18 allocatedAmount = ud(1e18).div(ud((owners.length * 1e18)));
-            DNFT.transferFrom(address(this), owners[i], DNFT.tokenOfOwnerByIndex(address(this), 0), intoUint256(allocatedAmount));
-        }
-
-        emit Deposited(token, tokenId, address(DNFT));
-    }
-
-    function onERC721Received(address, address, uint256, bytes calldata) external pure returns (bytes4) {
-        return IERC721Receiver.onERC721Received.selector;
     }
 }
