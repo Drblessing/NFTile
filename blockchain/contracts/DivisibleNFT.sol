@@ -29,9 +29,7 @@ contract DivisibleNFT is ERC721, ERC721URIStorage, ERC721Enumerable, ERC721Burna
 
     UnderlyingToken private _underlyingToken;
 
-    constructor(address owner) ERC721("DivisibleNFT", "DNFT") {
-        _transferOwnership(owner);
-    }
+    constructor() ERC721("DivisibleNFT", "DNFT") {}
 
     function getUnderlyingToken() public view returns(address, uint256, bool) {
         return (_underlyingToken.token, _underlyingToken.tokenId, _underlyingToken.isWrapped);
