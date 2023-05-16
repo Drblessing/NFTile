@@ -69,7 +69,7 @@ export function MintNFTForm() {
         </CardHeader>
         <CardBody>
           <Stack direction='column' spacing={4}>
-            <Text>Mint an NFT on OKC Testnet here:</Text>
+            <Text>Mint an NFT on Polygon ZKEVM Testnet here:</Text>
           </Stack>
         </CardBody>
         <CardFooter>
@@ -92,7 +92,7 @@ export function MintNFTForm() {
             {isSuccess && (
               <VStack>
                 <Heading size="md">Successfully minted your NFT!</Heading>
-                <Link href={`https://www.oklink.com/okc-test/tx/${data?.hash}`}>OKLink</Link>
+                <Link href={`https://testnet-zkevm.polygonscan.com/tx/${data?.hash}`}>Polygonscan</Link>
               </VStack>
             )}
             {(isPrepareError || isError) && (

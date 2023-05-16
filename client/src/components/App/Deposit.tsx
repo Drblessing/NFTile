@@ -118,8 +118,8 @@ export const Deposit = () => {
             {isSuccess && (
               <VStack>
                 <Heading size='md'>Successfully Deposited an NFT</Heading>
-                <Link href={`https://www.oklink.com/okc-test/tx/${txHash}`}>
-                  OKLink
+                <Link href={`https://testnet-zkevm.polygonscan.com/tx/${txHash}`}>
+                  Polygonscan
                 </Link>
               </VStack>
             )}

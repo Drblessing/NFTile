@@ -87,10 +87,10 @@ export function MarketingCTA() {
           <Text colorScheme={'purple'} fontSize={'2xl'} fontWeight={'bold'}>
             DAO Ecosystem On
           </Text>
-          <Link href='https://www.okx.com/okc' alignSelf={'center'}>
+          <Link href='https://polygon.technology/polygon-zkevm' alignSelf={'center'}>
             <Image
-              src='OKChain.png'
-              alt='OK Chain'
+              src='PolygonZKEVM.png'
+              alt='Polygon ZKEVM'
               boxSize='250px'
               alignSelf={'center'}
             />
@@ -109,16 +109,16 @@ export function MarketingCTA() {
             justifyContent={'center'}
           >
             <VStack>
-              <Link href='https://www.cherryswap.net/home/'>
+              <Link href='https://quickswap.exchange/#/'>
                 <Image
-                  src='CherrySwap.svg'
-                  alt='Cherry Swap'
+                  src='QuickSwap.png'
+                  alt='Quick Swap'
                   boxSize='100px'
                   alignSelf={'center'}
                 />
               </Link>
               <Text fontSize='lg' fontWeight='bold'>
-                Cherry Swap
+                Quick Swap
               </Text>
             </VStack>
             <VStack>
@@ -135,16 +135,16 @@ export function MarketingCTA() {
               </Text>
             </VStack>
             <VStack>
-              <Link href='https://anyswap.exchange'>
+              <Link href='https://zonic.app/'>
                 <Image
-                  src='anyswap.png'
-                  alt='Anyswap'
+                  src='Zonic.png'
+                  alt='Zonic'
                   alignSelf={'center'}
                   boxSize='100px'
                 />
               </Link>
               <Text fontSize='lg' fontWeight='bold'>
-                Anyswap
+                Zonic
               </Text>
             </VStack>
           </Stack>

@@ -68,8 +68,8 @@ export const UserInfo = () => {
                     description='Punk'
                   />
                   <NFTCard
-                    image='okxnftSample.png'
-                    title='Mock OKC #1'
+                    image='PolygonZKEVM.png'
+                    title='Mock ZKEVM #1'
                     description='NFTILE'
                   />
                 </>

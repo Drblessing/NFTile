@@ -19,7 +19,7 @@ contract MyToken is ERC721, ERC721Enumerable, AccessControl {
 
     function _baseURI() internal pure override returns (string memory) {
         return
-            "https://static.okx.com/cdn/assets/imgs/221/B1041DB14722953A.png";
+            "https://assets-global.website-files.com/6364e65656ab107e465325d2/642235057dbc06788f6c45c1_polygon-zkevm-logo.png";
     }
 
     function safeMint(address to) public {

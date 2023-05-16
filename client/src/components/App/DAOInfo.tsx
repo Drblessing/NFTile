@@ -39,7 +39,7 @@ export const DAOInfo = () => {
   const boredApe =
     'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/advisor/in/wp-content/uploads/2022/03/monkey-g412399084_1280.jpg';
 
-  const OKCNFT = '/OKCNFT.png';
+  const ZKEVM = '/PolygonZKEVM.png';
 
   const { data, isError, isLoading } = useContractRead({
     address: GnosisMultisig,
@@ -265,8 +265,8 @@ export const DAOInfo = () => {
                 />
                 <NFTCard image={boredApe} title='Ape #524' description='Punk' />
                 <NFTCard
-                  image={OKCNFT}
-                  title='OKC NFT #2352'
+                  image={ZKEVM}
+                  title='Polygon ZKEVM NFT #2352'
                   description='Punk'
                 />
               </>
@@ -276,7 +276,7 @@ export const DAOInfo = () => {
                 {dataReads.map((token, index) => (
                   <NFTCard
                     key={index}
-                    image={OKCNFT}
+                    image={ZKEVM}
                     title={`Mock NFT #${token?.underlyingToken?.tokenId.toString()}`}
                     seed={token?.underlyingToken?.tokenId.toString()}
                     description='MOCK NFT'

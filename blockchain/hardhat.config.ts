@@ -19,8 +19,8 @@ const config: HardhatUserConfig = {
   },
 
   networks: {
-    oktest: {
-      url: `https://exchaintestrpc.okex.org`, // RPC URL
+    zkevmtest: {
+      url: `https://rpc.public.zkevm-test.net`, // RPC URL
       accounts:
         process.env.DEPLOYER_PRIVATE_KEY == undefined
           ? []

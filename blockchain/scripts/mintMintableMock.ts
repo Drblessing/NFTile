@@ -4,7 +4,7 @@ import { ethers, deployments, getNamedAccounts } from "hardhat";
  * Deploys new unFacet and links it with deployed unDiamond
  */
 
-const to = "0x8b6db0c11d46c118B0137667637f228ab91EA25C";
+const to = "0x6636CFD2130Db2BE544BbaD987982d38bDDBe448";
 
 const main = async () => {  
     const { execute, get } = deployments;
