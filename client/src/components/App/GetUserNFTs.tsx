@@ -33,7 +33,7 @@ function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 5000);
 
     return () => {
       clearTimeout(timer);
@@ -96,6 +96,11 @@ export function GetUserNFTs() {
 
   useEffect(() => {
     loadStuff();
+    const interval = setInterval(() => loadStuff(), 2000);
+
+    return () => {
+      clearInterval(interval);
+    }
   }, []);
 
   return (

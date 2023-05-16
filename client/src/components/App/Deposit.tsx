@@ -18,16 +18,20 @@ import {
   Stack,
   VStack,
   Link,
+  Select
 } from '@chakra-ui/react';
 
 import { ethers } from 'ethers';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import MyToken from '../../assets/MyToken.json';
 import SimulatedDAOTeasury from '../../assets/SimulatedDAOTreasury.json';
 
 export const Deposit = () => {
+  const [myTokens, setMyTokens] = useState([]);
+  const { abi: mintableABI, address: mintableAddress } = MyToken;
+
   const [tokenAddress, setTokenAddress] = useState('');
   const [tokenID, setTokenID] = useState('');
 
@@ -47,6 +51,46 @@ export const Deposit = () => {
   const handleTokenIDChange = (e: any) => {
     setTokenID(e.target.value);
   };
+
+  const handleTokenSelectChange = (e: any) => {
+    setTokenAddress(mtknAddress);
+    setTokenID(e.target.value);
+  }
+
+  const loadStuff = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    let mtkn = new ethers.Contract(
+      mintableAddress as `0x${string}`,
+      mintableABI,
+      signer
+    );
+
+    let tokensInUserWallet = [];
+
+    for (let i = 0; i < Infinity; i++) {
+      try {
+        tokensInUserWallet.push(
+          await mtkn.tokenOfOwnerByIndex(await signer.getAddress(), i)
+        );
+      } catch (e) {
+        break;
+      }
+    }
+
+    console.log(tokensInUserWallet);
+    setMyTokens(tokensInUserWallet);
+  };
+
+  useEffect(() => {
+    loadStuff();
+    const interval = setInterval(() => loadStuff(), 2000);
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, []);
 
   const depositToken = async () => {
     setSuccess(false);
@@ -108,6 +152,12 @@ export const Deposit = () => {
               onChange={handleTokenIDChange}
               placeholder='Token ID'
             />
+
+            <Select onChange={handleTokenSelectChange} placeholder="Select a Mock NFT">
+              {myTokens.map((token, index) => (
+                <option index={index} value={token.toNumber()}>Mock NFT {token.toNumber()}</option>
+              ))}
+            </Select>
           </Stack>
         </CardBody>
         <CardFooter>

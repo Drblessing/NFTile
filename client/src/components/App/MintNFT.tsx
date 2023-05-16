@@ -69,7 +69,7 @@ export function MintNFTForm() {
         </CardHeader>
         <CardBody>
           <Stack direction='column' spacing={4}>
-            <Text>Mint an NFT on Polygon ZKEVM Testnet here:</Text>
+            <Text>Mint an NFT on the Polygon ZKEVM Testnet here:</Text>
           </Stack>
         </CardBody>
         <CardFooter>

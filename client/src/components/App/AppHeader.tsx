@@ -50,8 +50,11 @@ export const AppHeader = () => {
           transform='translateX(-50%)'
           zIndex='10'
           py={{ base: 0, md: 0 }}
+          cursor="pointer"
         >
-          🪟 NFTile
+          <Link href="app" style={{ textDecoration: 'none' }}>
+            🪟 NFTile
+          </Link>
         </Heading>
         <Flex gap={4}>
           <ConnectButton />
